@@ -493,6 +493,18 @@ function M.setup(config)
   }
 
   theme.plugins = {
+    -- nvim-cmp
+    CmpItemAbbr = { fg = c.nord4 },
+    CmpItemAbbrDeprecated = { fg = c.nord3_bright },
+    CmpItemAbbrMatch = { fg = c.nord8, style = bold .. inverse },
+    CmpItemAbbrMatchFuzzy = {
+      fg = c.nord8,
+      bg = c.nord0,
+      style = bold .. inverse,
+    },
+    CmpItemKind = { fg = c.nord9 },
+    CmpItemMenu = { fg = c.nord3_bright },
+
     -- Dashboard
     DashboardShortCut = { fg = c.nord7 },
     DashboardHeader = { fg = c.nord9 },
