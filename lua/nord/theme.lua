@@ -128,26 +128,22 @@ function M.setup(config)
     Search = { fg = c.nord1, bg = c.nord8 }, -- Last search pattern highlighting (see 'hlsearch').  Also used for similar items that need to stand out.
     SpecialKey = { fg = c.nord3 }, -- Unprintable characters: text displayed differently from what it really is.  But not 'listchars' whitespace. |hl-Whitespace|
     SpellBad = {
-      fg = c.nord11,
-      bg = c.nord0,
+      fg = c.none,
       style = "undercurl",
       sp = c.nord11,
     }, -- Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise.
     SpellCap = {
-      fg = c.nord13,
-      bg = c.nord0,
+      fg = c.none,
       style = "undercurl",
       sp = c.nord13,
     }, -- Word that should start with a capital. |spell| Combined with the highlighting used otherwise.
     SpellLocal = {
-      fg = c.nord5,
-      bg = c.nord0,
+      fg = c.none,
       style = "undercurl",
       sp = c.nord5,
     }, -- Word that is recognized by the spellchecker as one that is used in another region. |spell| Combined with the highlighting used otherwise.
     SpellRare = {
-      fg = c.nord6,
-      bg = c.nord0,
+      fg = c.none,
       style = "undercurl",
       sp = c.nord6,
     }, -- Word that is recognized by the spellchecker as one that is hardly ever used.  |spell| Combined with the highlighting used otherwise.
