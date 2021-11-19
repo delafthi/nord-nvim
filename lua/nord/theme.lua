@@ -566,7 +566,7 @@ function M.setup(config)
     -- Neogit
     NeogitBranch = { fg = c.nord15 },
     NeogitRemote = { fg = c.nord13 },
-    NeogitNotificationInfo = { fg = c.info },
+    NeogitNotificationInfo = { fg = c.success },
     NeogitNotificationWarning = { fg = c.warning },
     NeogitNotificationError = { fg = c.error },
     NeogitDiffAddHighlight = { fg = c.add, bg = c.nord1 },
@@ -580,7 +580,7 @@ function M.setup(config)
 
     -- Neovim
     healthError = { fg = c.error },
-    healthSuccess = { fg = c.nord14 },
+    healthSuccess = { fg = c.success },
     healthWarning = { fg = c.warning },
 
     -- nvim-dap

@@ -37,6 +37,7 @@ colors.error = colors.nord11
 colors.warning = colors.nord13
 colors.info = colors.nord8
 colors.hint = colors.nord10
+colors.success = colors.nord14
 
 colors.add = colors.nord14
 colors.remove = colors.nord11
