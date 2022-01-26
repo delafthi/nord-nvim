@@ -588,13 +588,13 @@ function M.setup(config)
     DapStopped = { fg = c.nord15 },
 
     -- nvim-ts-rainbow
-    rainbowcol1 = { fg = c.nord11 },
-    rainbowcol2 = { fg = c.nord12 },
-    rainbowcol3 = { fg = c.nord13 },
-    rainbowcol4 = { fg = c.nord14 },
-    rainbowcol5 = { fg = c.nord9 },
-    rainbowcol6 = { fg = c.nord7 },
-    rainbowcol7 = { fg = c.nord15 },
+    rainbowcol1 = { fg = c.nord10 },
+    rainbowcol2 = { fg = c.nord15 },
+    rainbowcol3 = { fg = c.nord14 },
+    rainbowcol4 = { fg = c.nord13 },
+    rainbowcol5 = { fg = c.nord12 },
+    rainbowcol6 = { fg = c.nord12 },
+    rainbowcol7 = { fg = c.nord9 },
 
     -- Telescope
     TelescopePromptBorder = { fg = c.nord15 },
