@@ -140,12 +140,12 @@ function M.setup(config)
     SpellLocal = {
       fg = c.none,
       style = "undercurl",
-      sp = c.nord5,
+      sp = c.nord8,
     }, -- Word that is recognized by the spellchecker as one that is used in another region. |spell| Combined with the highlighting used otherwise.
     SpellRare = {
       fg = c.none,
       style = "undercurl",
-      sp = c.nord6,
+      sp = c.nord7,
     }, -- Word that is recognized by the spellchecker as one that is hardly ever used.  |spell| Combined with the highlighting used otherwise.
     StatusLine = uniform_status_lines.StatusLine, -- status line of current window
     StatusLineNC = uniform_status_lines.StatusLineNC, -- status lines of not-current windows Note: if this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
