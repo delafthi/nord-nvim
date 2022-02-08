@@ -240,10 +240,10 @@ function M.setup(config)
     DiagnosticUnderlineInfo = { style = "undercurl", sp = c.info }, -- Used to underline "Information" diagnostics
     DiagnosticUnderlineHint = { style = "undercurl", sp = c.hint }, -- Used to underline "Hint" diagnostics
 
-    --  DiagnosticsVirtualTextError = {}, -- Used for "Error" diagnostic virtual text
-    --  DiagnosticsVirtualTextWarn = {}, -- Used for "Warning" diagnostic virtual text
-    --  DiagnosticsVirtualTextInfo = {}, -- Used for "Information" diagnostic virtual text
-    --  DiagnosticsVirtualTextHint = {}, -- Used for "Hint" diagnostic virtual text
+    --  DiagnosticVirtualTextError = {}, -- Used for "Error" diagnostic virtual text
+    --  DiagnosticVirtualTextWarn = {}, -- Used for "Warning" diagnostic virtual text
+    --  DiagnosticVirtualTextInfo = {}, -- Used for "Information" diagnostic virtual text
+    --  DiagnosticVirtualTextHint = {}, -- Used for "Hint" diagnostic virtual text
 
     LspSignatureActiveParameter = { fg = c.nord12 },
     LspCodeLens = { link = "Comment" },
