@@ -489,18 +489,6 @@ function M.setup(config)
   }
 
   theme.plugins = {
-    -- nvim-cmp
-    CmpItemAbbr = { fg = c.nord4 },
-    CmpItemAbbrDeprecated = { fg = c.nord3_bright },
-    CmpItemAbbrMatch = { fg = c.nord8, style = bold .. inverse },
-    CmpItemAbbrMatchFuzzy = {
-      fg = c.nord8,
-      bg = c.nord0,
-      style = bold .. inverse,
-    },
-    CmpItemKind = { fg = c.nord9 },
-    CmpItemMenu = { fg = c.nord3_bright },
-
     -- Dashboard
     DashboardShortCut = { fg = c.nord7 },
     DashboardHeader = { fg = c.nord9 },
@@ -582,6 +570,18 @@ function M.setup(config)
     healthError = { fg = c.error },
     healthSuccess = { fg = c.success },
     healthWarning = { fg = c.warning },
+
+    -- nvim-cmp
+    CmpItemAbbr = { fg = c.nord4 },
+    CmpItemAbbrDeprecated = { fg = c.nord3_bright },
+    CmpItemAbbrMatch = { fg = c.nord8, style = bold .. inverse },
+    CmpItemAbbrMatchFuzzy = {
+      fg = c.nord8,
+      bg = c.nord0,
+      style = bold .. inverse,
+    },
+    CmpItemKind = { fg = c.nord9 },
+    CmpItemMenu = { fg = c.nord3_bright },
 
     -- nvim-dap
     DapBreakpoint = { fg = c.nord11 },
@@ -676,6 +676,14 @@ function M.setup(config)
     TSTypeBuiltin = { link = "TypeBuiltin" }, --  Built-in types: `i32` in Rust.
     TSVariable = { link = "Identifier" }, --  Variable names that don't fit into other categories.
     TSVariableBuiltin = { link = "Keyword" }, --  Variable names defined by the language: `this` or `self` in Javascript.
+
+    -- Which-key.nvim
+    WhichKey = { link = "Function" }, -- the key
+    WhichKeyGroup = { link = "Keyword" }, -- a group
+    WhichKeySeparator = { link = "Keyword" }, -- the separator between the key and its label
+    WhichKeyDesc = { link = "Identifier" }, -- the label of the key
+    WhichKeyFloat = { fg = c.nord4, bg = c.nord1 }, -- Normal in the popup window
+    WhichKeyValue = { link = "Comment" }, -- used by plugins that provide values
   }
 
   return theme
