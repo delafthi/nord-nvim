@@ -149,9 +149,9 @@ function M.setup(config)
     }, -- Word that is recognized by the spellchecker as one that is hardly ever used.  |spell| Combined with the highlighting used otherwise.
     StatusLine = uniform_status_lines.StatusLine, -- status line of current window
     StatusLineNC = uniform_status_lines.StatusLineNC, -- status lines of not-current windows Note: if this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
-    TabLine = { fg = c.nord4, bg = c.nord1 }, -- tab pages line, not active tab page label
-    TabLineFill = { fg = c.nord4, bg = c.nord1 }, -- tab pages line, where there are no labels
-    TabLineSel = { fg = c.nord8, bg = c.nord3 }, -- tab pages line, active tab page label
+    TabLine = { fg = c.nord3_bright, bg = c.nord1 }, -- tab pages line, not active tab page label
+    TabLineFill = { fg = c.nord3, bg = c.nord0 }, -- tab pages line, where there are no labelsh
+    TabLineSel = { fg = c.nord4, bg = c.nord0, style = bold .. italic }, -- tab pages line, active tab page label
     Title = { fg = c.nord4 }, -- titles for output from ":set all", ":autocmd" etc.
     Visual = { bg = c.nord2 }, -- Visual mode selection
     VisualNOS = { link = "Visual" }, -- Visual mode selection when vim is "Not Owning the Selection".
@@ -489,6 +489,9 @@ function M.setup(config)
   }
 
   theme.plugins = {
+    -- Bufferline
+    TabLineSelector = { fg = c.nord9 },
+
     -- Dashboard
     DashboardShortCut = { fg = c.nord7 },
     DashboardHeader = { fg = c.nord9 },
