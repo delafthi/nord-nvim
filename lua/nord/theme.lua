@@ -491,6 +491,7 @@ function M.setup(config)
   theme.plugins = {
     -- Bufferline
     TabLineSelector = { fg = c.nord9 },
+    TabLineDuplicate = { fg = c.nord15 },
 
     -- Dashboard
     DashboardShortCut = { fg = c.nord7 },
