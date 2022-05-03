@@ -593,6 +593,9 @@ function M.setup(config)
     DapBreakpoint = { fg = c.nord11 },
     DapStopped = { fg = c.nord15 },
 
+    -- octo.nvim
+    OctoEditable = { bg = c.nord1 },
+
     -- nvim-ts-rainbow
     rainbowcol1 = { fg = c.nord10 },
     rainbowcol2 = { fg = c.nord15 },
