@@ -587,6 +587,7 @@ function M.setup(config)
     CmpItemKind = { fg = c.nord9 },
     CmpItemMenu = { fg = c.nord3_bright },
     CmpGhostText = { fg = c.nord3 },
+    CmpDocumentation = { bg = c.nord3 },
 
     -- nvim-dap
     DapBreakpoint = { fg = c.nord11 },
