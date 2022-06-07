@@ -17,21 +17,53 @@ function M.setup(config)
   local inverse = "inverse,"
 
   -- Config specific theme settings
+  local none = nil
   local bold = config.bold and "bold," or ""
   local italic = config.bold and "italic," or ""
   local underline = config.bold and "underline," or ""
 
-  local italic_comments = {}
-  if config.italic_comments then
-    italic_comments = {
-      Comment = { fg = c.nord3_bright, style = italic },
-      SpecialComment = { fg = c.nord8, style = italic },
-    }
+  local italics = {}
+  if config.italics.comments then
+    italics.Comment = italic
+    italics.SpecialComment = italic
   else
-    italic_comments = {
-      Comment = { fg = c.nord3_bright },
-      SpecialComment = { fg = c.nord8 },
-    }
+    italics.Comment = none
+    italics.SpecialComment = none
+  end
+  if config.italics.statements then
+    italics.Statement = italic
+  else
+    italics.Statement = none
+  end
+  if config.italics.conditionals then
+    italics.Conditional = italic
+  else
+    italics.Conditional = none
+  end
+  if config.italics.repeats then
+    italics.Repeat = italic
+  else
+    italics.Repeat = none
+  end
+  if config.italics.labels then
+    italics.Label = italic
+  else
+    italics.Label = none
+  end
+  if config.italics.operators then
+    italics.Operator = italic
+  else
+    italics.Operator = none
+  end
+  if config.italics.keywords then
+    italics.Keyword = italic
+  else
+    italics.Keyword = none
+  end
+  if config.italics.exceptions then
+    italics.Exception = italic
+  else
+    italics.Exception = none
   end
 
   local cursorline_number_background = {}
@@ -165,9 +197,9 @@ function M.setup(config)
     -- default,
     -- Uncomment and edit if you want more specific syntax highlighting.
 
-    Comment = italic_comments.Comment, -- any comment
+    Comment = { fg = c.nord3_bright, style = italics.Comment }, -- any comment
 
-    Constant = { fg = c.nord4 }, -- (preferred) any constant
+    Constant = { fg = c.nord0 }, -- (preferred) any constant
     String = { fg = c.nord14 }, -- a string constant: "this is a string"
     Character = { fg = c.nord14 }, -- a character constant: 'c', '\n'
     Number = { fg = c.nord15 }, -- a number constant: 234, 0xff
@@ -177,21 +209,21 @@ function M.setup(config)
     Identifier = { fg = c.nord4 }, -- (preferred) any variable name
     Function = { fg = c.nord8 }, -- function name (also: methods for classes)
 
-    Statement = { fg = c.nord9 }, -- (preferred) any statement
-    Conditional = { fg = c.nord9 }, -- if, then, else, endif, switch, etc.
-    Repeat = { fg = c.nord9 }, -- for, do, while, etc.
-    Label = { fg = c.nord9 }, -- case, default, etc.
-    Operator = { fg = c.nord9 }, -- "sizeof", "+", "*", etc.
-    Keyword = { fg = c.nord9 }, -- any other keyword
-    Exception = { fg = c.nord9 }, -- try, catch, throw
+    Statement = { fg = c.nord9, style = italics.Statement }, -- (preferred) any statement
+    Conditional = { fg = c.nord9, style = italics.Conditional }, -- if, then, else, endif, switch, etc.
+    Repeat = { fg = c.nord9, style = italics.Repeat }, -- for, do, while, etc.
+    Label = { fg = c.nord9, style = italics.Label }, -- case, default, etc.
+    Operator = { fg = c.nord8, style = italics.Operator }, -- "sizeof", "+", "*", etc.
+    Keyword = { fg = c.nord9, style = italics.Keyword }, -- any other keyword
+    Exception = { fg = c.nord9, style = italics.Exception }, -- try, catch, throw
 
-    PreProc = { fg = c.nord9 }, -- (preferred) generic Preprocessor
-    Include = { fg = c.nord9 }, -- preprocessor #include
-    Define = { fg = c.nord9 }, -- preprocessor #define
+    PreProc = { fg = c.nord10 }, -- (preferred) generic Preprocessor
+    Include = { fg = c.nord10 }, -- preprocessor #include
+    Define = { fg = c.nord10 }, -- preprocessor #define
     Macro = { link = "Define" }, -- same as Define
     PreCondit = { link = "PreProc" }, -- preprocessor #if, #else, #endif, etc.
 
-    Type = { fg = c.nord9 }, -- (preferred) int, long, char, etc.
+    Type = { fg = c.nord7 }, -- (preferred) int, long, char, etc.
     StorageClass = { fg = c.nord9 }, -- static, register, volatile, etc.
     Structure = { fg = c.nord9 }, -- struct, union, enum, etc.
     Typedef = { fg = c.nord9 }, -- A typedef
@@ -200,7 +232,7 @@ function M.setup(config)
     SpecialChar = { fg = c.nord13 }, -- special character in a constant
     Tag = { fg = c.nord4 }, -- you can use CTRL-] on this
     Delimiter = { fg = c.nord6 }, -- character that needs attention
-    SpecialComment = italic_comments.SpecialComment, -- special things inside a comment
+    SpecialComment = { fg = c.nord8, style = italics.SpecialComment }, -- special things inside a comment
     Debug = { fg = c.nord15 }, -- debugging statements
 
     Underlined = { style = underline }, -- text that stands out, HTML links
@@ -556,7 +588,7 @@ function M.setup(config)
     -- LightspeedCursor = {} -- Linked to |hl-Cursor| by default.
 
     -- Neogit
-    NeogitBranch = { fg = c.nord15 },
+    NeogitBranch = { fg = c.nord7, style = bold },
     NeogitRemote = { fg = c.nord13 },
     NeogitNotificationInfo = { fg = c.success },
     NeogitNotificationWarning = { fg = c.warning },
@@ -567,8 +599,8 @@ function M.setup(config)
       bg = c.nord1,
       fg = c.nord4,
     },
-    NeogitHunkHeader = { fg = c.nord4 },
-    NeogitHunkHeaderHighlight = { fg = c.nord7, bg = c.nord1 },
+    NeogitHunkHeader = { fg = c.nord9 },
+    NeogitHunkHeaderHighlight = { fg = c.nord9, bg = c.nord1 },
 
     -- Neovim
     healthError = { fg = c.error },
@@ -660,7 +692,7 @@ function M.setup(config)
     TSRepeat = { link = "Repeat" }, --  Keywords related to loops: `for`, `while`, etc.
     TSString = { link = "String" }, --  String literals.
     TSStringRegex = { link = "String" }, --  Regular expression literals.
-    TSStringEscape = { fg = c.nord15 }, --  Escape characters within a string: `\n`, `\t`, etc.
+    TSStringEscape = { fg = c.nord13 }, --  Escape characters within a string: `\n`, `\t`, etc.
     TSStringSpecial = { link = "TSStringEscape" }, --  Strings with special meaning that don't fit into the previous categories.
     TSSymbol = { link = "Identifier" }, --  Identifiers referring to symbols or atoms.
     TSTag = { link = "Tag" }, --  Tags like HTML tag names.
@@ -671,10 +703,10 @@ function M.setup(config)
     TSEmphasis = { link = "Italic" }, --  Text to be represented with emphasis.
     TSUnderline = { link = "Underline" }, --  Text to be represented with an underline.
     TSStrike = { style = strikethrough }, --  Strikethrough text.
-    TSTitle = { fg = c.nord8, style = bold }, --  Text that is part of a title.
-    TSLiteral = { fg = c.nord7 }, --  Literal or verbatim text.
-    TSURI = { fg = c.nord8, style = underline }, --  URIs like hyperlinks or email addresses.
-    TSMath = { fg = c.nord7 }, --  Math environments like LaTeX's `$ ... $`
+    TSTitle = { fg = c.nord9, style = bold }, --  Text that is part of a title.
+    TSLiteral = { fg = c.nord8 }, --  Literal or verbatim text.
+    TSURI = { fg = c.nord10, style = underline }, --  URIs like hyperlinks or email addresses.
+    TSMath = { fg = c.nord15 }, --  Math environments like LaTeX's `$ ... $`
     TSTextReference = { link = "String" }, --  Footnotes, text references, citations, etc.
     TSEnvironment = { bg = c.nord1 }, --  Text environments of markup languages.
     TSEnvironmentName = { link = "Tag" }, --  Text/string indicating the type of text environment. Like the name of `\begin` block in LaTeX.
