@@ -18,52 +18,65 @@ function M.setup(config)
 
   -- Config specific theme settings
   local none = nil
-  local bold = config.bold and "bold," or ""
-  local italic = config.bold and "italic," or ""
-  local underline = config.bold and "underline," or ""
+  local bold = config.bold.enabled and "bold," or ""
+  local italic = config.italic.enabled and "italic," or ""
+  local underline = config.underline.enabled and "underline," or ""
 
-  local italics = {}
-  if config.italics.comments then
-    italics.Comment = italic
-    italics.SpecialComment = italic
+  local italic_cfg = {}
+  if config.italic.comment then
+    italic_cfg.Comment = italic
+    italic_cfg.SpecialComment = italic
   else
-    italics.Comment = none
-    italics.SpecialComment = none
+    italic_cfg.Comment = none
+    italic_cfg.SpecialComment = none
   end
-  if config.italics.statements then
-    italics.Statement = italic
+
+  if config.italic.boolean then
+    italic_cfg.Boolean = italic
   else
-    italics.Statement = none
+    italic_cfg.Boolean = none
   end
-  if config.italics.conditionals then
-    italics.Conditional = italic
+
+  if config.italic.statement then
+    italic_cfg.Statement = italic
   else
-    italics.Conditional = none
+    italic_cfg.Statement = none
   end
-  if config.italics.repeats then
-    italics.Repeat = italic
+
+  if config.italic.conditional then
+    italic_cfg.Conditional = italic
   else
-    italics.Repeat = none
+    italic_cfg.Conditional = none
   end
-  if config.italics.labels then
-    italics.Label = italic
+
+  if config.italic["repeat"] then
+    italic_cfg.Repeat = italic
   else
-    italics.Label = none
+    italic_cfg.Repeat = none
   end
-  if config.italics.operators then
-    italics.Operator = italic
+
+  if config.italic.label then
+    italic_cfg.Label = italic
   else
-    italics.Operator = none
+    italic_cfg.Label = none
   end
-  if config.italics.keywords then
-    italics.Keyword = italic
+
+  if config.italic.operator then
+    italic_cfg.Operator = italic
   else
-    italics.Keyword = none
+    italic_cfg.Operator = none
   end
-  if config.italics.exceptions then
-    italics.Exception = italic
+
+  if config.italic.keyword then
+    italic_cfg.Keyword = italic
   else
-    italics.Exception = none
+    italic_cfg.Keyword = none
+  end
+
+  if config.italic.exception then
+    italic_cfg.Exception = italic
+  else
+    italic_cfg.Exception = none
   end
 
   local cursorline_number_background = {}
@@ -197,25 +210,25 @@ function M.setup(config)
     -- default,
     -- Uncomment and edit if you want more specific syntax highlighting.
 
-    Comment = { fg = c.nord3_bright, style = italics.Comment }, -- any comment
+    Comment = { fg = c.nord3_bright, style = italic_cfg.Comment }, -- any comment
 
-    Constant = { fg = c.nord0 }, -- (preferred) any constant
+    Constant = { fg = c.nord15 }, -- (preferred) any constant
     String = { fg = c.nord14 }, -- a string constant: "this is a string"
     Character = { fg = c.nord14 }, -- a character constant: 'c', '\n'
     Number = { fg = c.nord15 }, -- a number constant: 234, 0xff
-    Boolean = { fg = c.nord9 }, -- a boolean constant: TRUE, false
+    Boolean = { fg = c.nord9, style = italic_cfg.Boolean }, -- a boolean constant: TRUE, false
     Float = { fg = c.nord15 }, -- a floating point constant: 2.3e10
 
     Identifier = { fg = c.nord4 }, -- (preferred) any variable name
     Function = { fg = c.nord8 }, -- function name (also: methods for classes)
 
-    Statement = { fg = c.nord9, style = italics.Statement }, -- (preferred) any statement
-    Conditional = { fg = c.nord9, style = italics.Conditional }, -- if, then, else, endif, switch, etc.
-    Repeat = { fg = c.nord9, style = italics.Repeat }, -- for, do, while, etc.
-    Label = { fg = c.nord9, style = italics.Label }, -- case, default, etc.
-    Operator = { fg = c.nord8, style = italics.Operator }, -- "sizeof", "+", "*", etc.
-    Keyword = { fg = c.nord9, style = italics.Keyword }, -- any other keyword
-    Exception = { fg = c.nord9, style = italics.Exception }, -- try, catch, throw
+    Statement = { fg = c.nord9, style = italic_cfg.Statement }, -- (preferred) any statement
+    Conditional = { fg = c.nord9, style = italic_cfg.Conditional }, -- if, then, else, endif, switch, etc.
+    Repeat = { fg = c.nord9, style = italic_cfg.Repeat }, -- for, do, while, etc.
+    Label = { fg = c.nord9, style = italic_cfg.Label }, -- case, default, etc.
+    Operator = { fg = c.nord8, style = italic_cfg.Operator }, -- "sizeof", "+", "*", etc.
+    Keyword = { fg = c.nord9, style = italic_cfg.Keyword }, -- any other keyword
+    Exception = { fg = c.nord9, style = italic_cfg.Exception }, -- try, catch, throw
 
     PreProc = { fg = c.nord10 }, -- (preferred) generic Preprocessor
     Include = { fg = c.nord10 }, -- preprocessor #include
@@ -232,7 +245,7 @@ function M.setup(config)
     SpecialChar = { fg = c.nord13 }, -- special character in a constant
     Tag = { fg = c.nord4 }, -- you can use CTRL-] on this
     Delimiter = { fg = c.nord6 }, -- character that needs attention
-    SpecialComment = { fg = c.nord8, style = italics.SpecialComment }, -- special things inside a comment
+    SpecialComment = { fg = c.nord8, style = italic_cfg.SpecialComment }, -- special things inside a comment
     Debug = { fg = c.nord15 }, -- debugging statements
 
     Underlined = { style = underline }, -- text that stands out, HTML links

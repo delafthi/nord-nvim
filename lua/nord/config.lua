@@ -14,18 +14,23 @@ local function opt(key, default)
 end
 
 config = {
-  bold = opt("bold", true),
-  italic = opt("italic", true),
-  underline = opt("underline", true),
-  italics = {
-    comments = opt("italics.comments", true),
-    statements = opt("italics.statements", true),
-    conditionals = opt("italics.conditional", true),
-    repeats = opt("italics.repeat", true),
-    labels = opt("italics.label", true),
-    operators = opt("italics.operator", true),
-    keywords = opt("italics.keyword", true),
-    exceptions = opt("italics.exception", true),
+  bold = {
+    enabled = opt("bold.enabled", true),
+  },
+  italic = {
+    enabled = opt("italic.enabled", true),
+    comment = opt("italic.comment", false),
+    boolean = opt("italics.booleans", true),
+    statement = opt("italic.statement", true),
+    conditional = opt("italic.conditional", true),
+    ["repeat"] = opt("italic.repeat", true),
+    label = opt("italic.label", true),
+    operator = opt("italic.operator", false),
+    keyword = opt("italic.keyword", true),
+    exception = opt("italic.exception", true),
+  },
+  underline = {
+    enabled = opt("underline.enabled", true),
   },
   cursor_line_number_background = opt("cursor_line_number_background", true),
   uniform_status_lines = opt("uniform_status_lines", true),
