@@ -212,12 +212,12 @@ function M.setup(config)
 
     Comment = { fg = c.nord3_bright, style = italic_cfg.Comment }, -- any comment
 
-    Constant = { fg = c.nord15 }, -- (preferred) any constant
+    Constant = { fg = c.nord7 }, -- (preferred) any constant
     String = { fg = c.nord14 }, -- a string constant: "this is a string"
     Character = { fg = c.nord14 }, -- a character constant: 'c', '\n'
-    Number = { fg = c.nord15 }, -- a number constant: 234, 0xff
-    Boolean = { fg = c.nord9, style = italic_cfg.Boolean }, -- a boolean constant: TRUE, false
-    Float = { fg = c.nord15 }, -- a floating point constant: 2.3e10
+    Number = { fg = c.nord13 }, -- a number constant: 234, 0xff
+    Boolean = { fg = c.nord7, style = italic_cfg.Boolean }, -- a boolean constant: TRUE, false
+    Float = { fg = c.nord13 }, -- a floating point constant: 2.3e10
 
     Identifier = { fg = c.nord4 }, -- (preferred) any variable name
     Function = { fg = c.nord8 }, -- function name (also: methods for classes)
