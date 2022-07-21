@@ -21,6 +21,7 @@ function M.setup(config)
   local bold = config.bold.enabled and "bold," or ""
   local italic = config.italic.enabled and "italic," or ""
   local underline = config.underline.enabled and "underline," or ""
+  local undercurl = config.undercurl.enabled and "undercurl," or ""
 
   local italic_cfg = {}
   if config.italic.comment then
@@ -105,7 +106,8 @@ function M.setup(config)
   if config.bold_vertical_split_line then
     bold_vertical_split_line = { VertSplit = { fg = c.nord2, bg = c.nord1 } }
   else
-    bold_vertical_split_line = { VertSplit = { fg = c.nord2, bg = c.nord0 } }
+    bold_vertical_split_line =
+      { VertSplit = { fg = c.nord2, bg = { gui = c.nord0.gui } } }
   end
 
   local uniform_diff_background = {}
@@ -118,10 +120,18 @@ function M.setup(config)
     }
   else
     uniform_diff_background = {
-      DiffAdd = { fg = c.add, bg = c.nord0, style = inverse },
-      DiffChange = { fg = c.change, bg = c.nord0, style = inverse },
-      DiffDelete = { fg = c.remove, bg = c.nord0, style = inverse },
-      DiffText = { fg = c.nord9, bg = c.nord0, style = inverse },
+      DiffAdd = { fg = c.add, bg = { gui = c.nord0.gui }, style = inverse },
+      DiffChange = {
+        fg = c.change,
+        bg = { gui = c.nord0.gui },
+        style = inverse,
+      },
+      DiffDelete = {
+        fg = c.remove,
+        bg = { gui = c.nord0.gui },
+        style = inverse,
+      },
+      DiffText = { fg = c.nord9, bg = { gui = c.nord0.gui }, style = inverse },
     }
   end
 
@@ -133,7 +143,7 @@ function M.setup(config)
 
     ColorColumn = { bg = c.nord1 }, -- used for the columns set with 'colorcolumn'
     Conceal = { bg = c.none }, -- placeholder characters substituted for concealed text (see 'conceallevel')
-    Cursor = { fg = c.nord0, bg = c.nord4 }, -- character under the cursor
+    Cursor = { fg = { gui = c.nord0.gui }, bg = c.nord4 }, -- character under the cursor
     lCursor = { link = "Cursor" }, -- the character under the cursor when |language-mapping| is used (see 'guicursor')
     CursorIM = { link = "Cursor" }, -- like Cursor, but used when in IME mode |CursorIM|
     CursorColumn = { bg = c.nord4 }, -- Screen-column at the cursor, when 'cursorcolumn' is set.
@@ -150,7 +160,7 @@ function M.setup(config)
     VertSplit = bold_vertical_split_line.VertSplit, -- the column separating vertically split windows
     Folded = { fg = c.blue, bg = c.none }, -- line used for closed folds
     FoldColumn = { fg = c.nord3, bg = c.nord1 }, -- 'foldcolumn'
-    SignColumn = { fg = c.nord1, bg = c.nord0 }, -- column where |signs| are displayed
+    SignColumn = { fg = c.nord1, bg = { gui = c.nord0.gui } }, -- column where |signs| are displayed
     IncSearch = { fg = c.nord6, bg = c.nord10, style = underline }, -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
     Substitute = { link = "IncSearch" }, -- |:substitute| replacement text highlighting
     LineNr = { fg = c.nord3 }, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
@@ -161,7 +171,7 @@ function M.setup(config)
     -- MsgSeparator= { }, -- Separator for scrolled messages, `msgsep` flag of 'display'
     MoreMsg = { fg = c.nord8 }, -- |more-prompt|
     NonText = { fg = c.nord2 }, -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
-    Normal = { fg = c.nord4, bg = c.nord0 }, -- normal text
+    Normal = { fg = c.nord4, bg = { gui = c.nord0.gui } }, -- normal text
     NormalFloat = { fg = c.nord4, bg = c.nord2 }, -- Normal text in floating windows.
     NormalNC = { link = "Normal" }, -- normal text in non-current windows
     Pmenu = { fg = c.nord4, bg = c.nord2 }, -- Popup menu: normal item.
@@ -174,33 +184,37 @@ function M.setup(config)
     SpecialKey = { fg = c.nord3 }, -- Unprintable characters: text displayed differently from what it really is.  But not 'listchars' whitespace. |hl-Whitespace|
     SpellBad = {
       fg = c.none,
-      style = "undercurl",
+      style = undercurl,
       sp = c.nord11,
     }, -- Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise.
     SpellCap = {
       fg = c.none,
-      style = "undercurl",
+      style = undercurl,
       sp = c.nord13,
     }, -- Word that should start with a capital. |spell| Combined with the highlighting used otherwise.
     SpellLocal = {
       fg = c.none,
-      style = "undercurl",
+      style = undercurl,
       sp = c.nord8,
     }, -- Word that is recognized by the spellchecker as one that is used in another region. |spell| Combined with the highlighting used otherwise.
     SpellRare = {
       fg = c.none,
-      style = "undercurl",
+      style = undercurl,
       sp = c.nord7,
     }, -- Word that is recognized by the spellchecker as one that is hardly ever used.  |spell| Combined with the highlighting used otherwise.
     StatusLine = uniform_status_lines.StatusLine, -- status line of current window
     StatusLineNC = uniform_status_lines.StatusLineNC, -- status lines of not-current windows Note: if this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
     TabLine = { fg = c.nord3_bright, bg = c.nord1 }, -- tab pages line, not active tab page label
-    TabLineFill = { fg = c.nord3, bg = c.nord0 }, -- tab pages line, where there are no labelsh
-    TabLineSel = { fg = c.nord4, bg = c.nord0, style = bold .. italic }, -- tab pages line, active tab page label
+    TabLineFill = { fg = c.nord3, bg = { gui = c.nord0.gui } }, -- tab pages line, where there are no labelsh
+    TabLineSel = {
+      fg = c.nord4,
+      bg = { gui = c.nord0.gui },
+      style = bold .. italic,
+    }, -- tab pages line, active tab page label
     Title = { fg = c.nord4 }, -- titles for output from ":set all", ":autocmd" etc.
     Visual = { bg = c.nord2 }, -- Visual mode selection
     VisualNOS = { link = "Visual" }, -- Visual mode selection when vim is "Not Owning the Selection".
-    WarningMsg = { fg = c.nord0, bg = c.nord13 }, -- warning messages
+    WarningMsg = { fg = { gui = c.nord0.gui }, bg = c.nord13 }, -- warning messages
     Whitespace = { fg = c.nord2 }, -- "nbsp", "space", "tab" and "trail" in 'listchars'
     WildMenu = { fg = c.nord8, bg = c.nord1 }, -- current match in 'wildmenu' completion
 
@@ -280,10 +294,10 @@ function M.setup(config)
     -- DiagnosticFloatingInfo = { }, -- Used to color "Information" diagnostic messages in diagnostics float
     -- DiagnosticFloatingHint = { }, -- Used to color "Hint" diagnostic messages in diagnostics float
 
-    DiagnosticUnderlineError = { style = "undercurl", sp = c.error }, -- Used to underline "Error" diagnostics
-    DiagnosticUnderlineWarn = { style = "undercurl", sp = c.warning }, -- Used to underline "Warning" diagnostics
-    DiagnosticUnderlineInfo = { style = "undercurl", sp = c.info }, -- Used to underline "Information" diagnostics
-    DiagnosticUnderlineHint = { style = "undercurl", sp = c.hint }, -- Used to underline "Hint" diagnostics
+    DiagnosticUnderlineError = { style = undercurl, sp = c.error }, -- Used to underline "Error" diagnostics
+    DiagnosticUnderlineWarn = { style = undercurl, sp = c.warning }, -- Used to underline "Warning" diagnostics
+    DiagnosticUnderlineInfo = { style = undercurl, sp = c.info }, -- Used to underline "Information" diagnostics
+    DiagnosticUnderlineHint = { style = undercurl, sp = c.hint }, -- Used to underline "Hint" diagnostics
 
     --  DiagnosticVirtualTextError = {}, -- Used for "Error" diagnostic virtual text
     --  DiagnosticVirtualTextWarn = {}, -- Used for "Warning" diagnostic virtual text
@@ -626,7 +640,7 @@ function M.setup(config)
     CmpItemAbbrMatch = { fg = c.nord8, style = bold .. inverse },
     CmpItemAbbrMatchFuzzy = {
       fg = c.nord8,
-      bg = c.nord0,
+      bg = { gui = c.nord0.gui },
       style = bold .. inverse,
     },
     CmpItemKind = { fg = c.nord9 },

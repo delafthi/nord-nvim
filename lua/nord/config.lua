@@ -32,6 +32,9 @@ config = {
   underline = {
     enabled = opt("underline.enabled", true),
   },
+  undercurl = {
+    enabled = opt("undercurl.enabled", true),
+  },
   cursor_line_number_background = opt("cursor_line_number_background", true),
   uniform_status_lines = opt("uniform_status_lines", true),
   bold_vertical_split_line = opt("bold_vertical_split_line", true),
