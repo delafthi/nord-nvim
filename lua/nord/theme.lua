@@ -668,8 +668,8 @@ function M.setup(config)
     TelescopePromptBorder = { fg = c.nord15 },
     TelescopeResultsBorder = { fg = c.nord9 },
     TelescopePreviewBorder = { fg = c.nord10 },
-    TelescopeSelectionCaret = { fg = c.nord9 },
-    TelescopeSelection = { fg = c.nord9 },
+    TelescopeSelectionCaret = { fg = c.nord9, style = bold},
+    TelescopeSelection = { fg = c.nord9, style = bold },
     TelescopeMatching = { fg = c.nord8 },
     -- TelescopeNormal = {},
 
