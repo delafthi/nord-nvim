@@ -661,7 +661,7 @@ function M.setup(config)
     rainbowcol3 = { fg = c.nord14 },
     rainbowcol4 = { fg = c.nord13 },
     rainbowcol5 = { fg = c.nord12 },
-    rainbowcol6 = { fg = c.nord12 },
+    rainbowcol6 = { fg = c.nord11 },
     rainbowcol7 = { fg = c.nord9 },
 
     -- Telescope
