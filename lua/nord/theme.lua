@@ -258,7 +258,7 @@ function M.setup(config)
     Special = { fg = c.nord4 }, -- (preferred) any special symbol
     SpecialChar = { fg = c.nord13 }, -- special character in a constant
     Tag = { fg = c.nord4 }, -- you can use CTRL-] on this
-    Delimiter = { fg = c.nord6 }, -- character that needs attention
+    Delimiter = { fg = c.nord8 }, -- character that needs attention
     SpecialComment = { fg = c.nord8, style = italic_cfg.SpecialComment }, -- special things inside a comment
     Debug = { fg = c.nord15 }, -- debugging statements
 
@@ -299,10 +299,10 @@ function M.setup(config)
     DiagnosticUnderlineInfo = { style = undercurl, sp = c.info }, -- Used to underline "Information" diagnostics
     DiagnosticUnderlineHint = { style = undercurl, sp = c.hint }, -- Used to underline "Hint" diagnostics
 
-    --  DiagnosticVirtualTextError = {}, -- Used for "Error" diagnostic virtual text
-    --  DiagnosticVirtualTextWarn = {}, -- Used for "Warning" diagnostic virtual text
-    --  DiagnosticVirtualTextInfo = {}, -- Used for "Information" diagnostic virtual text
-    --  DiagnosticVirtualTextHint = {}, -- Used for "Hint" diagnostic virtual text
+    -- DiagnosticVirtualTextError = {}, -- Used for "Error" diagnostic virtual text
+    -- DiagnosticVirtualTextWarn = {}, -- Used for "Warning" diagnostic virtual text
+    -- DiagnosticVirtualTextInfo = {}, -- Used for "Information" diagnostic virtual text
+    -- DiagnosticVirtualTextHint = {}, -- Used for "Hint" diagnostic virtual text
 
     LspSignatureActiveParameter = { fg = c.nord12 },
     LspCodeLens = { link = "Comment" },
@@ -674,76 +674,76 @@ function M.setup(config)
     -- TelescopeNormal = {},
 
     -- Tree-sitter
-    TSAttribute = { fg = c.nord10 }, -- Annotations that can be attached to the code to denote some kind of meta information. e.g. C++/Dart attributes.
-    TSBoolean = { link = "Boolean" }, -- Boolean literals: `True` and `False` in Python.
+    ["@attribute"] = { fg = c.nord10 }, -- Annotations that can be attached to the code to denote some kind of meta information. e.g. C++/Dart attributes.
+    ["@boolean"] = { link = "Boolean" }, -- Boolean literals: `True` and `False` in Python.
 
-    TSCharacter = { link = "Character" }, -- Character literals: `'a'` in C.
+    ["@character"] = { link = "Character" }, -- Character literals: `'a'` in C.
 
-    TSComment = { link = "Comment" }, -- Line comments and block comments.
+    ["@comment"] = { link = "Comment" }, -- Line comments and block comments.
 
-    TSConditional = { link = "Conditional" }, -- Keywords related to conditionals: `if`, `when`, `cond`, etc.
+    ["@conditional"] = { link = "Conditional" }, -- Keywords related to conditionals: `if`, `when`, `cond`, etc.
 
-    TSConstant = { link = "Constant" }, -- Constants identifiers. These might not be semantically constant. E.g. uppercase variables in Python.
-    TSConstBuiltin = { link = "Constant" }, -- Built-in constant values: `nil` in Lua.
-    TSConstMacro = { link = "Function" }, -- Constants defined by macros: `NULL` in C.
+    ["@constant"] = { link = "Constant" }, -- Constants identifiers. These might not be semantically constant. E.g. uppercase variables in Python.
+    ["@constant.builtin"] = { link = "Constant" }, -- Built-in constant values: `nil` in Lua.
+    ["@constant.macro"] = { link = "Function" }, -- Constants defined by macros: `NULL` in C.
 
-    TSConstructor = { link = "Function" }, -- Constructor calls and definitions: `{}` in Lua, and Java constructors.
+    ["@constructor"] = { link = "Function" }, -- Constructor calls and definitions: `{}` in Lua, and Java constructors.
 
-    TSError = { link = "Error" }, -- Syntax/parser errors. This might highlight large sections of code while the user is typing still incomplete code, use a sensible highlight.
+    ["@error"] = { link = "Error" }, -- Syntax/parser errors. This might highlight large sections of code while the user is typing still incomplete code, use a sensible highlight.
 
-    TSException = { link = "Exception" }, -- Exception related keywords: `try`, `except`, `finally` in Python.
+    ["@exception"] = { link = "Exception" }, -- Exception related keywords: `try`, `except`, `finally` in Python.
 
-    TSField = { link = "Identifier" }, -- Object and struct fields.
+    ["@field"] = { link = "Identifier" }, -- Object and struct fields.
 
-    TSFloat = { link = "Float" }, -- Floating-point number literals.
-    TSFunction = { link = "Function" }, --  Function calls and definitions.
-    TSFuncBuiltin = { link = "Function" }, --  Built-in functions: `print` in Lua.
-    TSFuncMacro = { fg = c.nord8 }, --  Macro defined functions (calls and definitions): each `macro_rules` in Rust.
-    TSInclude = { link = "Include" }, --  File or module inclusion keywords: `#include` in C, `use` or `extern crate` in Rust.
-    TSKeyword = { link = "Keyword" }, -- Keywords that don't fit into other categories.
-    TSKeywordFunction = { link = "Keyword" }, --  Keywords used to define a function: `function` in Lua, `def` and `lambda` in Python.
-    TSKeywordOperator = { link = "Keyword" }, --  Unary and binary operators that are English words: `and`, `or` in Python; `sizeof` in C.
-    TSKeywordReturn = { link = "Keyword" }, --  Keywords like `return` and `yield`.
-    TSLabel = { link = "Label" }, --  GOTO labels: `label:` in C, and `::label::` in Lua.
-    TSMethod = { link = "Function" }, --  Method calls and definitions.
-    TSNamespace = { fg = c.nord7 }, --  Identifiers referring to modules and namespaces.
-    -- TSNone = {}, --  No highlighting (sets all highlight arguments to `NONE`). this group is used to clear certain ranges, for example, string interpolations. Don't change the values of this highlight group.
-    TSNumber = { link = "Number" }, --  Numeric literals that don't fit into other categories.
-    TSOperator = { link = "Operator" }, --  Binary or unary operators: `+`, and also `->` and `*` in C.
-    TSParameter = { fg = c.nord10 }, --  Parameters of a function.
-    TSParameterReference = { link = "TSParameter" }, --  References to parameters of a function.
-    -- TSProperty = { }, --  Same as `TSField`.
-    TSPunctDelimiter = { link = "Delimiter" }, --  Punctuation delimiters: Periods, commas, semicolons, etc.
-    TSPunctBracket = { link = "Delimiter" }, --  Brackets, braces, parentheses, etc.
-    TSPunctSpecial = { link = "Delimiter" }, --  Special punctuation that doesn't fit into the previous categories.
-    TSRepeat = { link = "Repeat" }, --  Keywords related to loops: `for`, `while`, etc.
-    TSString = { link = "String" }, --  String literals.
-    TSStringRegex = { link = "String" }, --  Regular expression literals.
-    TSStringEscape = { fg = c.nord13 }, --  Escape characters within a string: `\n`, `\t`, etc.
-    TSStringSpecial = { link = "TSStringEscape" }, --  Strings with special meaning that don't fit into the previous categories.
-    TSSymbol = { link = "Identifier" }, --  Identifiers referring to symbols or atoms.
-    TSTag = { link = "Tag" }, --  Tags like HTML tag names.
-    TSTagAttribute = { link = "TSAttribute" }, --  HTML tag attributes.
-    TSTagDelimiter = { link = "Delimiter" }, --  Tag delimiters like `<` `>` `/`.
-    TSText = { link = "Text" }, --  Non-structured text. Like text in a markup language.
-    TSStrong = { link = "Bold" }, --  Text to be represented in bold.
-    TSEmphasis = { link = "Italic" }, --  Text to be represented with emphasis.
-    TSUnderline = { link = "Underline" }, --  Text to be represented with an underline.
-    TSStrike = { style = strikethrough }, --  Strikethrough text.
-    TSTitle = { fg = c.nord9, style = bold }, --  Text that is part of a title.
-    TSLiteral = { fg = c.nord8 }, --  Literal or verbatim text.
-    TSURI = { fg = c.nord10, style = underline }, --  URIs like hyperlinks or email addresses.
-    TSMath = { fg = c.nord15 }, --  Math environments like LaTeX's `$ ... $`
-    TSTextReference = { link = "String" }, --  Footnotes, text references, citations, etc.
-    TSEnvironment = { bg = c.nord1 }, --  Text environments of markup languages.
-    TSEnvironmentName = { link = "Tag" }, --  Text/string indicating the type of text environment. Like the name of `\begin` block in LaTeX.
-    TSNote = { fg = c.info }, --  Text representation of an informational note.
-    TSWarning = { fg = c.warning }, --  Text representation of a warning note.
-    TSDanger = { fg = c.error }, --  Text representation of a danger note.
-    TSType = { link = "Type" }, --  Type (and class) definitions and annotations.
-    TSTypeBuiltin = { link = "TypeBuiltin" }, --  Built-in types: `i32` in Rust.
-    TSVariable = { link = "Identifier" }, --  Variable names that don't fit into other categories.
-    TSVariableBuiltin = { link = "Keyword" }, --  Variable names defined by the language: `this` or `self` in Javascript.
+    ["@float"] = { link = "Float" }, -- Floating-point number literals.
+    ["@function"] = { link = "Function" }, -- Function calls and definitions.
+    ["@function.builtin"] = { link = "Function" }, -- Built-in functions: `print` in Lua.
+    ["@function.macro"] = { fg = c.nord8 }, -- Macro defined functions (calls and definitions): each `macro_rules` in Rust.
+    ["@include"] = { link = "Include" }, -- File or module inclusion keywords: `#include` in C, `use` or `extern crate` in Rust.
+    ["@keyword"] = { link = "Keyword" }, -- Keywords that don't fit into other categories.
+    ["@keyword.function"] = { link = "Keyword" }, -- Keywords used to define a function: `function` in Lua, `def` and `lambda` in Python.
+    ["@keyword.operator"] = { link = "Keyword" }, -- Unary and binary operators that are English words: `and`, `or` in Python; `sizeof` in C.
+    ["@keyword.return"] = { link = "Keyword" }, -- Keywords like `return` and `yield`.
+    ["@label"] = { link = "Label" }, -- GOTO labels: `label:` in C, and `::label::` in Lua.
+    ["@method"] = { link = "Function" }, -- Method calls and definitions.
+    ["@namespace"] = { fg = c.nord7 }, -- Identifiers referring to modules and namespaces.
+    -- ["@none"] = {}, -- No highlighting (sets all highlight arguments to `NONE`). this group is used to clear certain ranges, for example, string interpolations. Don't change the values of this highlight group.
+    ["@number"] = { link = "Number" }, -- Numeric literals that don't fit into other categories.
+    ["@operator"] = { link = "Operator" }, -- Binary or unary operators: `+`, and also `->` and `*` in C.
+    ["@parameter"] = { fg = c.nord10 }, -- Parameters of a function.
+    ["@parameter.reference"] = { link = "@parameter" }, -- References to parameters of a function.
+    ["@property"] = { link = "@field" }, -- Same as `@field`.
+    ["@punctuation.delimiter"] = { link = "Delimiter" }, -- Punctuation delimiters: Periods, commas, semicolons, etc.
+    ["@punctuation.bracket"] = { link = "Delimiter" }, -- Brackets, braces, parentheses, etc.
+    ["@punctuation.special"] = { link = "Delimiter" }, -- Special punctuation that doesn't fit into the previous categories.
+    ["@repeat"] = { link = "Repeat" }, -- Keywords related to loops: `for`, `while`, etc.
+    ["@string"] = { link = "String" }, -- String literals.
+    ["@string.regex"] = { link = "String" }, -- Regular expression literals.
+    ["@string.escape"] = { fg = c.nord13 }, -- Escape characters within a string: `\n`, `\t`, etc.
+    ["@string.special"] = { link = "@string.escape" }, -- Strings with special meaning that don't fit into the previous categories.
+    ["@symbol"] = { link = "Identifier" }, -- Identifiers referring to symbols or atoms.
+    ["@tag"] = { link = "Tag" }, -- Tags like HTML tag names.
+    ["@tag.attribute"] = { link = "@attribute" }, -- HTML tag attributes.
+    ["@tag.delimiter"] = { link = "Delimiter" }, -- Tag delimiters like `<` `>` `/`.
+    ["@text"] = { link = "Text" }, -- Non-structured text. Like text in a markup language.
+    ["@text.emphasis"] = { link = "Italic" }, -- Text to be represented with emphasis.
+    ["@text.literal"] = { fg = c.nord13 }, -- Literal or verbatim text
+    ["@text.math"] = { fg = c.nord15 }, -- Math environments like LaTeX's `$ ... $`
+    ["@text.reference"] = { fg = c.nord8 }, -- Footnotes, text references, citations, etc.
+    ["@text.strike"] = { style = strikethrough }, -- Strikethrough text.
+    ["@text.strong"] = { link = "Bold" }, -- Text to be represented in bold.
+    ["@text.title"] = { fg = c.nord12, style = bold }, -- text that is part of a title
+    ["@text.underline"] = { link = "Underline" }, -- Text to be represented with an underline.
+    ["@text.uri"] = { fg = c.nord10, style = underline }, -- URIs like hyperlinks or email addresses.
+    ["@text.environment"] = { bg = c.nord1 }, -- Text environments of markup languages.
+    ["@text.environment.name"] = { link = "Tag" }, -- Text/string indicating the type of text environment. Like the name of `\begin` block in LaTeX.
+    ["@text.note"] = { fg = c.info }, -- Text representation of an informational note.
+    ["@text.warning"] = { fg = c.warning }, -- Text representation of a warning note.
+    ["@text.danger"] = { fg = c.error }, -- Text representation of a danger note.
+    ["@type"] = { link = "Type" }, -- Type (and class) definitions and annotations.
+    ["@type.builtin"] = { link = "TypeBuiltin" }, -- Built-in types: `i32` in Rust.
+    ["@variable"] = { link = "Identifier" }, -- Variable names that don't fit into other categories.
+    ["@variable.builtin"] = { link = "Keyword" }, -- Variable names defined by the language: `this` or `self` in Javascript.
 
     -- Which-key.nvim
     WhichKey = { link = "Function" }, -- the key
