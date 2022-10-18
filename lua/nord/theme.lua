@@ -464,6 +464,13 @@ function M.setup(config)
     markdownRule = { link = "Keyword" },
     markdownHeadingDelimiter = { link = "Keyword" },
 
+    ["@punctuation.special.markdown"] = {
+      fg = c.nord15,
+      style = bold,
+    },
+    ["@text.literal.markdown"] = { fg = c.nord4 },
+    ["@text.literal.markdown_inline"] = { fg = c.nord4 },
+
     perlPackageDecl = { fg = c.nord7 },
 
     phpClasses = { fg = c.nord7 },
